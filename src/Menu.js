@@ -11,10 +11,10 @@ const Menu = (props) => (
         <NavLink to="/boasts/">Boasts</NavLink>
       </li>
       <li>
-        <NavLink to="/roats">Roasts</NavLink>
+        <NavLink to="/roats/">Roasts</NavLink>
       </li>
       <li>
-        <NavLink to="popular-posts">Popular Posts</NavLink>
+        <NavLink to="/top/">Popular Posts</NavLink>
       </li>
     </ul>
   </React.Fragment>

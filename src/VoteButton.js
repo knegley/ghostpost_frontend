@@ -1,19 +1,25 @@
 import React from "react";
-import { vote } from "./actions";
+import { messages } from "./actions";
 import { MessageContext } from "./App";
 
 const VoteButton = ({ id }) => {
-  const { dispatch } = React.useContext(MessageContext);
+  const { message, dispatch } = React.useContext(MessageContext);
   const postUrl = `http://127.0.0.1:8000/api/posts/${id}/`;
   //   console.log(id);
   //   console.log(message);
+
+  // console.log(message.messages.filter(({ i }) => i == id));
+
+  const receiveList = (list) => dispatch(messages(list));
+
   const castVote = (tally) => async (dispatch) => {
-    dispatch(vote(tally));
     const d = await fetch(postUrl);
     const response = await d.json();
     console.log(response);
+
+    // dispatch(vote(tally, response.id));
     let time = Date().toLocaleString();
-    console.log(time);
+    // console.log(time);
     let data =
       tally > 0
         ? { up_votes: response["up_votes"] + 1 }
@@ -27,7 +33,14 @@ const VoteButton = ({ id }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(test),
       });
-      console.log(await postData.json());
+      let postDataResponse = await postData.json();
+      console.log(postDataResponse);
+      let msgs = message.messages.filter(({ id }) => id !== response.id);
+      msgs = [...msgs, postDataResponse].sort(
+        (a, b) => b.vote_total - a.vote_total
+      );
+      console.log(msgs);
+      receiveList(msgs);
     } catch (error) {
       console.error(error);
     }

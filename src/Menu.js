@@ -8,10 +8,10 @@ const Menu = (props) => (
         <NavLink to="">Messages</NavLink>
       </li>
       <li>
-        <NavLink to="/boasts/">Boasts</NavLink>
+        <NavLink to="/boast/">Boasts</NavLink>
       </li>
       <li>
-        <NavLink to="/roats/">Roasts</NavLink>
+        <NavLink to="/roast/">Roasts</NavLink>
       </li>
       <li>
         <NavLink to="/top/">Popular Posts</NavLink>

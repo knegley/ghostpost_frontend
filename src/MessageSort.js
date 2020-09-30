@@ -5,17 +5,22 @@ import { messages } from "./actions";
 const MessageSort = ({ sort }) => {
   const { message, dispatch } = React.useContext(MessageContext);
   const messageUrl = `http://127.0.0.1:8000/api/posts/${sort}/`;
+  // console.log(sort);
 
   const receiveList = (list) => (dispatch) => dispatch(messages(list));
 
   React.useEffect(() => {
     (async () => {
-      const response = await fetch(messageUrl);
-      const data = await response.json();
+      try {
+        const response = await fetch(messageUrl);
+        const data = await response.json();
+        receiveList(data)(dispatch);
+      } catch (error) {
+        console.error(error);
+      }
       // console.log(data);
-      receiveList(data)(dispatch);
     })();
-  }, [dispatch]);
+  }, [dispatch, messageUrl]);
 
   const messageBoard = message.messages.map((m) => (
     <ul key={m.id}>
@@ -28,7 +33,7 @@ const MessageSort = ({ sort }) => {
 
   return (
     <React.Fragment>
-      <h1>Top Messages</h1>
+      <h1>Posts</h1>
       {messageBoard}
     </React.Fragment>
   );

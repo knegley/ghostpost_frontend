@@ -12,15 +12,15 @@ const App = () => {
 
   const messageMatch = useRouteMatch({ path: "", exact: true });
   const topMessageMatch = useRouteMatch("/top/");
-  const roastMessageMatch = useRouteMatch("/roasts/");
-  const boastMessageMatch = useRouteMatch("/boasts/");
+  const roastMessageMatch = useRouteMatch("/roast/");
+  const boastMessageMatch = useRouteMatch("/boast/");
   return (
     <MessageContext.Provider value={{ message, dispatch }}>
       <Menu />
       {messageMatch && <Messages />}
       {topMessageMatch && <MessageSort sort={"top"} />}
-      {roastMessageMatch && <MessageSort sort={"roasts"} />}
-      {boastMessageMatch && <MessageSort sort={"boasts"} />}
+      {roastMessageMatch && <MessageSort sort={"roast"} />}
+      {boastMessageMatch && <MessageSort sort={"boast"} />}
     </MessageContext.Provider>
   );
 };

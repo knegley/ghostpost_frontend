@@ -36,9 +36,11 @@ const VoteButton = ({ id }) => {
       let postDataResponse = await postData.json();
       console.log(postDataResponse);
       let msgs = message.messages.filter(({ id }) => id !== response.id);
-      msgs = [...msgs, postDataResponse].sort(
-        (a, b) => b.vote_total - a.vote_total
-      );
+      msgs = [...msgs, postDataResponse].sort((a, b) => {
+        let dateA = new Date(a.date_created);
+        let dateB = new Date(b.date_created);
+        return dateB - dateA;
+      });
       console.log(msgs);
       receiveList(msgs);
     } catch (error) {

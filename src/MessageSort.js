@@ -27,6 +27,7 @@ const MessageSort = ({ sort }) => {
       <li>Message: {m.message}</li>
       <li>Last Updated: {m.last_updated}</li>
       <li>Date Created: {m.date_created}</li>
+      <li>Type: {m.message_type}</li>
       <li>Total Votes: {m.vote_total}</li>
     </ul>
   ));

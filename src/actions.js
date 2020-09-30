@@ -7,4 +7,7 @@ const actions = {
 
 const vote = actionCreator(actions.VOTE, "vote", "id");
 const messages = actionCreator(actions.MESSAGES, "messages");
-export { actions, vote, messages };
+
+const receiveList = (list) => (dispatch) => dispatch(messages(list));
+
+export { actions, vote, messages, receiveList };

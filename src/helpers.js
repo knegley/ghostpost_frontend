@@ -19,7 +19,8 @@ const postData = async (postUrl, data) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    return response.json();
+    console.log(await response.json());
+    // return response.json();
   } catch (error) {
     console.error(error);
   }
@@ -28,10 +29,12 @@ const postData = async (postUrl, data) => {
 const getMessageData = (url, dispatch) =>
   (async () => {
     try {
+      // console.log("working");
       const response = await fetch(url);
       const data = await response.json();
       // console.log(data);
       // console.log("working");
+      // console.log(data);
       receiveList(data)(dispatch);
     } catch (error) {
       console.error(error);

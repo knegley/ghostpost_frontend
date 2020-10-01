@@ -9,9 +9,10 @@ const PostMessage = (props) => {
   const messagesUrl = "http://127.0.0.1:8000/api/posts/post-list/";
   const postUrl = "http://127.0.0.1:8000/api/posts/post/";
 
-  const handlePost = (post) => {
+  const handlePost = async (post) => {
     console.log(post);
-    postData(postUrl, post);
+    await postData(postUrl, post);
+    await getMessageData(messagesUrl, dispatch);
   };
 
   const handleSubmit = (event) => {
@@ -23,13 +24,10 @@ const PostMessage = (props) => {
       message_type: form.postType.value,
     };
     // console.log(event.target.postedMessage.value);
-    try {
-      handlePost(post);
-    } catch (error) {
-      console.error(error);
-    }
+
+    handlePost(post);
+
     // event.target.postedMessage.value = "";
-    getMessageData(messagesUrl, dispatch);
     form.reset();
   };
 

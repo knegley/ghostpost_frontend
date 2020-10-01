@@ -1,7 +1,7 @@
 import React from "react";
 import { MessageContext } from "./App";
 import VoteButton from "./VoteButton";
-import { receiveList } from "./actions";
+import { getMessageData } from "./helpers";
 import PostMessage from "./PostMessage";
 
 const Messages = (props) => {
@@ -9,12 +9,7 @@ const Messages = (props) => {
   const postUrl = "http://127.0.0.1:8000/api/posts/post-list/";
 
   React.useEffect(() => {
-    (async () => {
-      const response = await fetch(postUrl);
-      const data = await response.json();
-      // console.log(data);
-      receiveList(data)(dispatch);
-    })();
+    getMessageData(postUrl, dispatch);
   }, [dispatch]);
 
   // console.log(message.messages);

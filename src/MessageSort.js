@@ -1,13 +1,11 @@
 import React from "react";
 import { MessageContext } from "./App";
-import { messages } from "./actions";
+import { receiveList } from "./helpers";
 
 const MessageSort = ({ sort }) => {
   const { message, dispatch } = React.useContext(MessageContext);
   const messageUrl = `http://127.0.0.1:8000/api/posts/${sort}/`;
   // console.log(sort);
-
-  const receiveList = (list) => (dispatch) => dispatch(messages(list));
 
   React.useEffect(() => {
     (async () => {

@@ -1,4 +1,10 @@
-import { actionCreator } from "./helpers";
+const actionCreator = (type, ...payloadNames) => (...args) => {
+  const action = { type };
+  payloadNames.forEach((_, index) => {
+    action[payloadNames[index]] = args[index];
+  });
+  return action;
+};
 
 const actions = {
   VOTE: "VOTE",
@@ -8,6 +14,4 @@ const actions = {
 const vote = actionCreator(actions.VOTE, "vote", "id");
 const messages = actionCreator(actions.MESSAGES, "messages");
 
-const receiveList = (list) => (dispatch) => dispatch(messages(list));
-
-export { actions, vote, messages, receiveList };
+export { actions, vote, messages };

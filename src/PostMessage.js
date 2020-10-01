@@ -1,5 +1,5 @@
 import React from "react";
-import { postData, getMessagesData } from "./helpers";
+import { postData, getMessageData } from "./helpers";
 import { MessageContext } from "./App";
 
 const PostMessage = (props) => {
@@ -12,12 +12,11 @@ const PostMessage = (props) => {
   const handlePost = (post) => {
     console.log(post);
     postData(postUrl, post);
-    getMessagesData(messagesUrl)(dispatch);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target);
+    // console.log(event.target);
     let form = event.target;
     let post = {
       message: form.postedMessage.value,
@@ -30,6 +29,7 @@ const PostMessage = (props) => {
       console.error(error);
     }
     // event.target.postedMessage.value = "";
+    getMessageData(messagesUrl, dispatch);
     form.reset();
   };
 
@@ -45,6 +45,8 @@ const PostMessage = (props) => {
         required
         maxLength="280"
         spellCheck="true"
+        cols="80"
+        rotes="6"
       />
       <label htmlFor="messageType">Choose Type</label>
       <select id="messageType" name="postType">
